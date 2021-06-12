@@ -75,17 +75,19 @@ To get a local copy up and running follow these simple steps.
 
 **Response**
 ```js
-[
-   {
-        "text": "What is the capital of Luxembourg?",
-        "createdAt": "2021-06-12T18:03:47+02:00",
-        "choices": [
-            "Viena",
-            "Madri",
-            "Luxembourg"
-        ]
-    }
-]
+{
+   "data": [
+      {
+         "text": "What is the capital of Luxembourg?",
+         "createdAt": "2021-06-12T18:03:47+02:00",
+         "choices": [
+               "Viena",
+               "Madri",
+               "Luxembourg"
+         ]
+      }
+   ]
+}
 ```
 
 You can find a detailed documentation about the endpoints available in the [specification](doc/open-api.yaml).

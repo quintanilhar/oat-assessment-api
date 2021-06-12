@@ -43,16 +43,18 @@ class ListQuestionsAction
         return $this->responder->respond(
             $request, 
             $response,
-            array_map(
-                function (QuestionForList $question) use ($translate) {
-                    return [
-                        'text'      => $translate($question->text()),
-                        'createdAt' => $question->createdAt(),
-                        'choices'   => array_map(fn (string $choice) => $translate($choice), $question->choices())
-                    ];
-                },
-                $questions
-            )
+            [
+                'data' => array_map(
+                    function (QuestionForList $question) use ($translate) {
+                        return [
+                            'text'      => $translate($question->text()),
+                            'createdAt' => $question->createdAt(),
+                            'choices'   => array_map(fn (string $choice) => $translate($choice), $question->choices())
+                        ];
+                    },
+                    $questions
+                )
+            ]
         );
     }
 }
