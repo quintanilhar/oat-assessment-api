@@ -29,9 +29,9 @@ To get a local copy up and running follow these simple steps.
    make up
    ```
 3. Run tests
-```sh
-   make test
-```
+   ```sh
+      make test
+   ```
 
 ## Usage
 
