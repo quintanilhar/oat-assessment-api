@@ -20,6 +20,10 @@
         <testsuite name="Functional tests">
             <directory>test/Functional</directory>
         </testsuite>
+
+        <testsuite name="Integration tests">
+            <directory>test/Integration</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

@@ -12,9 +12,14 @@ final class CreateQuestionCommand
 
     private DateTimeImmutable $createdAt;
 
-    /** string[] */
+    /** @var string[] */
     private array $choices;
 
+    /**
+     * @param string            $text
+     * @param DateTimeImmutable $createdAt
+     * @param string[]          $choices
+     */
     public function __construct(string $text, DateTimeImmutable $createdAt, array $choices)
     {
         $this->text      = $text;

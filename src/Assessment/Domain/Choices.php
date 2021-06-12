@@ -19,4 +19,9 @@ final class Choices implements Countable
     {
         return count($this->items);
     }
+
+    public function toArray(): array
+    {
+        return $this->items;
+    }
 }
