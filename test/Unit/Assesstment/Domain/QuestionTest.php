@@ -8,7 +8,6 @@ use DateTimeImmutable;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Quintanilhar\AssessmentApi\Assessment\Domain\Choice;
-use Quintanilhar\AssessmentApi\Assessment\Domain\ChoiceId;
 use Quintanilhar\AssessmentApi\Assessment\Domain\Choices;
 use Quintanilhar\AssessmentApi\Assessment\Domain\Question;
 use Quintanilhar\AssessmentApi\Assessment\Domain\QuestionId;
@@ -54,10 +53,7 @@ class QuestionTest extends TestCase
     {
         $choices = [];
         for ($i = 1; $i <= $amount; $i++) {
-            $choices[] = new Choice(
-                ChoiceId::fromString(Uuid::uuid4()->toString()), 
-                'Choice ' . $i
-            );
+            $choices[] = Choice::fromString('Choice ' . $i);
         }
 
         return new Choices(...$choices);

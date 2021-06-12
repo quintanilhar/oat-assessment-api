@@ -25,6 +25,7 @@ class Question
         DateTimeImmutable $createdAt, 
         Choices $choices
     ) {
+        Assert::notEmpty($text, 'Question text must have at least one character');
         Assert::count($choices, self::EXPECTED_CHOICES_AMOUNT, 'Question must containt exactly %s choices');
 
         $this->id        = $id;

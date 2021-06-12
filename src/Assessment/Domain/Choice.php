@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace Quintanilhar\AssessmentApi\Assessment\Domain;
 
+use Webmozart\Assert\Assert;
+
 final class Choice
 {
-    private ChoiceId $id;
-
     private string $text;
 
-    public function __construct(ChoiceId $id, string $text)
+    private function __construct(string $text)
     {
-        $this->id   = $id;
+        Assert::notEmpty($text, 'Choice must contain at least 1 character');
+
         $this->text = $text;
     }
 
-    public function id(): ChoiceId
+    public static function fromString(string $text): self
     {
-        return $this->id;
+        return new self($text);
     }
 
-    public function text(): string
+    public function asString(): string
     {
         return $this->text;
     }
