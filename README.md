@@ -6,6 +6,7 @@ The easist way to manage multiple-choice questions in your assessments.
 
 * [PHP](https://www.php.net/)
 * [OpenAPI Spec](https://swagger.io/specification/)
+* [Slim](https://www.slimframework.com/)
 
 ## Getting Started
 
@@ -23,10 +24,14 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone https://github.com/quintanilhar/oat-assessment-api.git
    ```
-2. Run make up
+2. Start up the app
    ```sh
    make up
    ```
+3. Run tests
+```sh
+   make test
+```
 
 ## Usage
 

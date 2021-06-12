@@ -54,7 +54,7 @@ down:
 ## test: Start all services and run the tests
 .PHONY: test
 test:
-	${DOCKER_COMPOSE_TEST} run --rm test sh ./run_tests.sh
+	${DOCKER_COMPOSE} run --rm backend php vendor/bin/phpunit
 
 ## ps: Show the status of the containers
 .PHONY: ps
@@ -70,4 +70,5 @@ logs:
 .PHONY: destroy
 destroy:
 	rm -rvf vendor/*
+	rm -rvf var/*
 	${DOCKER_COMPOSE} down -v --remove-orphans --rmi all

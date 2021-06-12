@@ -16,7 +16,7 @@ use RuntimeException;
 
 class JsonQuestionRepositoryTest extends TestCase
 {
-    private const DB_PATH = __DIR__ . '/../../../../../var/integration_test_question_repository.json';
+    private const DB_PATH = __DIR__ . '/../../../../var/integration_test_question_repository.json';
 
     private JsonQuestionRespository $sut;
 
