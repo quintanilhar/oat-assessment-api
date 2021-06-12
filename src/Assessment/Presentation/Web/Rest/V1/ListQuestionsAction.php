@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Quintanilhar\AssessmentApi\Assessment\Application\ListQuestions\ListQuestionsRepository;
 use Quintanilhar\AssessmentApi\Assessment\Application\ListQuestions\QuestionForList;
 use Quintanilhar\AssessmentApi\Common\Application\TranslateSentenceService;
+use Quintanilhar\AssessmentApi\Common\Presentation\Web\Responder\Responder;
 
 class ListQuestionsAction
 {
@@ -16,35 +17,42 @@ class ListQuestionsAction
 
     private TranslateSentenceService $translateSentenceService;
 
+    private Responder $responder;
+
     public function __construct(
         ListQuestionsRepository $listQuestionsRepository, 
-        TranslateSentenceService $translateSentenceService
+        TranslateSentenceService $translateSentenceService,
+        Responder $responder
     ) {
         $this->listQuestionsRepository  = $listQuestionsRepository;
         $this->translateSentenceService = $translateSentenceService;
+        $this->responder                = $responder;
     }
 
     public function __invoke(Request $request, Response $response): Response
     {
+        $queryParams = $request->getQueryParams();
+
+        if (empty($queryParams['lang'])) {
+            return $this->responder->respond($request, $response, ['lang' => 'Lang must be provided']);
+        }
+
+        $translate = $this->translateSentenceService;
         $questions = $this->listQuestionsRepository->all();
         
-        $body = $response->getBody();
-
-        $body->write(json_encode(
+        return $this->responder->respond(
+            $request, 
+            $response,
             array_map(
-                function (QuestionForList $question) {
+                function (QuestionForList $question) use ($translate) {
                     return [
-                        'text'      => $this->translateSentenceService->__invoke($question->text()),
+                        'text'      => $translate($question->text()),
                         'createdAt' => $question->createdAt(),
-                        'choices'   => array_map(fn (string $choice) => $this->translateSentenceService->__invoke($choice), $question->choices())
+                        'choices'   => array_map(fn (string $choice) => $translate($choice), $question->choices())
                     ];
                 },
                 $questions
             )
-        ));
-
-        return $response
-            ->withBody($body)
-            ->withHeader('Content-Type', 'application/json');
+        );
     }
 }
