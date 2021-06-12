@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Quintanilhar\AssessmentApi\Assessment\Service;
+namespace Quintanilhar\AssessmentApi\Assessment\Application\CreateQuestion;
 
 use Quintanilhar\AssessmentApi\Assessment\Domain\Choice;
 use Quintanilhar\AssessmentApi\Assessment\Domain\Choices;

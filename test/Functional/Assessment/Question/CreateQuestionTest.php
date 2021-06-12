@@ -7,10 +7,10 @@ namespace Quintanilhar\AssessmentApi\Test\Functional\Assessment\Question;
 use DateTimeImmutable;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Quintanilhar\AssessmentApi\Assessment\Application\CreateQuestion\CreateQuestionCommand;
+use Quintanilhar\AssessmentApi\Assessment\Application\CreateQuestion\CreateQuestionService;
 use Quintanilhar\AssessmentApi\Assessment\Domain\QuestionId;
 use Quintanilhar\AssessmentApi\Assessment\Domain\QuestionRepository;
-use Quintanilhar\AssessmentApi\Assessment\Service\CreateQuestionCommand;
-use Quintanilhar\AssessmentApi\Assessment\Service\CreateQuestionService;
 use Ramsey\Uuid\Uuid;
 
 class CreateQuestionTest extends TestCase
