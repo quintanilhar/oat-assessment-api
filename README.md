@@ -1,6 +1,6 @@
-# OAT-X
+# Assessment Api
 
-`oat-x` is the easist way to manage multiple-choice questions in your assessments.
+The easist way to manage multiple-choice questions in your assessments.
 
 ## Built With
 
@@ -21,7 +21,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/quintanilhar/oatx.git
+   git clone https://github.com/quintanilhar/oat-assessment-api.git
    ```
 2. Run make up
    ```sh

@@ -1,5 +1,5 @@
 {
-    "name": "quintanilhar/oatx",
+    "name": "quintanilhar/assessment-api",
     "description": "The easist way to manage multiple-choice questions in your assessments.",
     "type": "project",
     "authors": [
@@ -10,5 +10,19 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "webmozart/assert": "^1.10",
+        "ramsey/uuid": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Quintanilhar\\AssessmentApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Quintanilhar\\AssessmentApi\\Test\\": "test/"
+        }
     }
 }
