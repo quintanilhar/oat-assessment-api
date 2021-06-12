@@ -8,14 +8,20 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Quintanilhar\AssessmentApi\Assessment\Application\ListQuestions\ListQuestionsRepository;
 use Quintanilhar\AssessmentApi\Assessment\Application\ListQuestions\QuestionForList;
+use Quintanilhar\AssessmentApi\Common\Application\TranslateSentenceService;
 
 class ListQuestionsAction
 {
     private ListQuestionsRepository $listQuestionsRepository;
 
-    public function __construct(ListQuestionsRepository $listQuestionsRepository)
-    {
-        $this->listQuestionsRepository = $listQuestionsRepository;
+    private TranslateSentenceService $translateSentenceService;
+
+    public function __construct(
+        ListQuestionsRepository $listQuestionsRepository, 
+        TranslateSentenceService $translateSentenceService
+    ) {
+        $this->listQuestionsRepository  = $listQuestionsRepository;
+        $this->translateSentenceService = $translateSentenceService;
     }
 
     public function __invoke(Request $request, Response $response): Response
@@ -28,9 +34,9 @@ class ListQuestionsAction
             array_map(
                 function (QuestionForList $question) {
                     return [
-                        'text'      => $question->text(),
+                        'text'      => $this->translateSentenceService->__invoke($question->text()),
                         'createdAt' => $question->createdAt(),
-                        'choices'   => $question->choices()
+                        'choices'   => array_map(fn (string $choice) => $this->translateSentenceService->__invoke($choice), $question->choices())
                     ];
                 },
                 $questions

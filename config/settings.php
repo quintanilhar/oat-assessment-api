@@ -7,6 +7,7 @@ use DI\ContainerBuilder;
 return function (ContainerBuilder $containerBuilder): void
 {
     $containerBuilder->addDefinitions([
+        'language'      => getenv('LANGUAGE'),
         'database.path' => getenv('DATABASE_PATH')
     ]);
 };
