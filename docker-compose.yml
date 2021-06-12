@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    web:
+      build:
+        context: ./docker/nginx
+      restart: on-failure
+      depends_on:
+          - backend
+      ports:
+        - "9001:80"
+      environment:
+        - SERVER_NAME=oat-x.docker
+        - PHP_BACKEND=backend
+        - ROOT=/opt/web
+      volumes:
+        - ${PWD}:/opt:cached
+      networks:
+        - oatx
+
+    backend:
+      build:
+        context: ./docker/php
+      restart: on-failure
+      user: ${HOST_UID}:${HOST_GID}
+      volumes:
+        - ${PWD}:/opt:cached
+      networks:
+        - oatx
+
+networks:
+    oatx: ~

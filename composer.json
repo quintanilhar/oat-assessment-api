@@ -1,0 +1,14 @@
+{
+    "name": "quintanilhar/oatx",
+    "description": "The easist way to manage multiple-choice questions in your assessments.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ricardo Quintanilha",
+            "email": "ricardo.aquintanilha@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
